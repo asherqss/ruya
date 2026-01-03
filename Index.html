@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz Aniversário, Ruya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b0b0b;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .card {
+      max-width: 600px;
+      margin: 60px auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 40px rgba(255, 77, 109, 0.25);
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+      font-size: 2.4rem;
+    }
+
+    p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #ff4d6d;
+      margin: 6px 0;
+      border-radius: 2px;
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      padding: 30px 20px;
+      transition: left 0.4s ease;
+      z-index: 998;
+      overflow-y: auto;
+    }
+
+    .menu.open { left: 0; }
+
+    .menu h2 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+    }
+
+    .poem {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      opacity: 0.85;
+    }
+
+    .slideshow, .anime-slideshow {
+      margin-top: 30px;
+      width: 100%;
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 77, 109, 0.4);
+    }
+
+    .slide, .anime-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .slide.active, .anime-slide.active {
+      opacity: 1;
+    }
+
+    .anime-poem {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #ffb3c1;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .anime-poem.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Música de fundo -->
+<audio id="bgm" src="music.mp3" loop></audio>
+
+<div class="menu-btn" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+
+<div class="menu" id="menu">
+  <h2>Poemas</h2>
+  <div class="poem">Te amar é encontrar paz no caos do mundo.</div>
+  <div class="poem">Mesmo em silêncio, meu coração chama por você.</div>
+  <div class="poem">Entre todas as vidas, eu escolheria você.</div>
+  <div class="poem">Amar você é meu destino favorito.</div>
+</div>
+
+<div class="card">
+  <h1>Feliz Aniversário, Ruya 🎂</h1>
+  <p>Esse site é uma pequena forma de te lembrar o quanto você é especial pra mim. Eu te amo.</p>
+
+  <div class="slideshow">
+    <img src="https://static.wikia.nocookie.net/codegeass/images/6/6f/Lelouch_and_CC.png" class="slide active">
+    <img src="https://static.wikia.nocookie.net/codegeass/images/9/9e/CC_and_Lelouch.jpg" class="slide">
+    <img src="https://static.wikia.nocookie.net/codegeass/images/3/3a/Lelouch_CC_Sunset.png" class="slide">
+  </div>
+
+  <div class="anime-slideshow" onclick="nextAnime()">
+    <img src="https://static.wikia.nocookie.net/naruto/images/6/6b/Naruto_Hinata.png" class="anime-slide active" data-poem="Entre mil batalhas, foi você que escolhi amar.">
+    <img src="https://static.wikia.nocookie.net/yourname/images/4/4f/Taki_Mitsuha.jpg" class="anime-slide" data-poem="Mesmo separados pelo tempo, nossas almas se encontraram.">
+    <img src="https://static.wikia.nocookie.net/clannad/images/6/6f/Tomoya_Nagisa.jpg" class="anime-slide" data-poem="O futuro só faz sentido porque você está nele.">
+  </div>
+
+  <div class="anime-poem" id="animePoem"></div>
+</div>
+
+<script>
+document.addEventListener('click', () => {
+  const bgm = document.getElementById('bgm');
+  if (bgm && bgm.paused) bgm.play();
+}, { once: true });
+
+function toggleMenu() {
+  document.getElementById('menu').classList.toggle('open');
+}
+
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}, 4000);
+
+const animeSlides = document.querySelectorAll('.anime-slide');
+const poemBox = document.getElementById('animePoem');
+let animeCurrent = 0;
+
+function showPoem() {
+  poemBox.classList.remove('show');
+  setTimeout(() => {
+    poemBox.textContent = animeSlides[animeCurrent].dataset.poem;
+    poemBox.classList.add('show');
+  }, 200);
+}
+
+function nextAnime() {
+  animeSlides[animeCurrent].classList.remove('active');
+  animeCurrent = (animeCurrent + 1) % animeSlides.length;
+  animeSlides[animeCurrent].classList.add('active');
+  showPoem();
+}
+
+showPoem();
+setInterval(nextAnime, 5000);
+</script>
+
+</body>
+</html>
