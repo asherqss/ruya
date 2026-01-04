@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Ruya 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;font-family:Arial;background:#0b0b0b;color:white;overflow-x:hidden}
+header{padding:40px;text-align:center}
+h1{color:#ff4d6d}
+.slideshow,.anime{position:relative;width:90%;max-width:800px;height:450px;margin:30px auto;overflow:hidden;border-radius:20px}
+.slideshow img,.anime img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:1.5s}
+.active{opacity:1}
+.poem{font-size:1.2rem;text-align:center;color:#ffb3c1;opacity:0;transition:1s}
+.poem.show{opacity:1}
+.menu{position:fixed;top:20px;left:20px}
+.menu span{display:block;width:30px;height:4px;background:#ff4d6d;margin:5px}
+audio{display:none}
+</style>
+</head>
+<body>
+
+<audio id="bgm" src="music.mp3" loop></audio>
+
+<header>
+<h1>Feliz Aniversário, Ruya 🎂</h1>
+<p>Esse site é uma prova do quanto você é especial pra mim.</p>
+</header>
+
+<div class="slideshow">
+<img src="images/lelouch_cc_1.jpg" class="active">
+<img src="images/lelouch_cc_2.jpg">
+</div>
+
+<div class="anime" onclick="nextAnime()">
+<img src="images/naruto_hinata.jpg" class="active" data-poem="Entre batalhas, escolhi você.">
+<img src="images/ichigo_orihime.jpg" data-poem="Mesmo no caos, meu coração é seu.">
+<img src="images/taki_mitsuha.jpg" data-poem="Nem o tempo nos separa.">
+<img src="images/kirito_asuna.jpg" data-poem="Se for lutar o mundo, que seja ao seu lado.">
+<img src="images/hori_miyamura.jpg" data-poem="Você me viu por quem eu sou.">
+<img src="images/tomoya_nagisa.jpg" data-poem="O futuro é melhor com você.">
+</div>
+
+<div class="poem" id="poem"></div>
+
+<script>
+document.addEventListener('click',()=>{document.getElementById('bgm').play()},{once:true})
+let a=0;const imgs=document.querySelectorAll('.anime img');const poem=document.getElementById('poem')
+function nextAnime(){
+ imgs[a].classList.remove('active')
+ a=(a+1)%imgs.length
+ imgs[a].classList.add('active')
+ poem.textContent=imgs[a].dataset.poem
+ poem.classList.add('show')
+}
+setInterval(()=>{
+ document.querySelector('.slideshow img.active').classList.remove('active')
+ const s=document.querySelectorAll('.slideshow img')
+ const n=(Array.from(s).findIndex(i=>i.classList.contains('active'))+1)%s.length
+ s[n].classList.add('active')
+},4000)
+</script>
+
+</body>
+</html>
