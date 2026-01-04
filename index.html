@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário, Ruya</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1b0f1f, #050006);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ESTRELAS */
+.stars div {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* SEÇÕES */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+}
+
+.hero span { color: #ff7ac6; }
+
+.hero p {
+  margin-top: 1.5rem;
+  max-width: 650px;
+  margin-inline: auto;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* CAIXAS */
+.box {
+  max-width: 750px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 25px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 60px rgba(255,122,198,0.15);
+  animation: fadeUp 2s ease;
+}
+
+.box h2 {
+  font-family: 'Playfair Display', serif;
+  color: #ff9bd9;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.box p {
+  line-height: 1.9;
+  font-size: 1.05rem;
+  white-space: pre-line;
+}
+
+/* BOTÕES */
+button {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #ff7ac6, #a855f7);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(255,122,198,0.7);
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.popup.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup-content {
+  background: #120015;
+  padding: 3rem;
+  border-radius: 25px;
+  max-width: 650px;
+  text-align: center;
+}
+
+/* CORAÇÕES */
+.heart {
+  position: fixed;
+  color: #ff7ac6;
+  animation: floatUp 3s linear forwards;
+  font-size: 20px;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120px); opacity: 0; }
+}
+
+footer {
+  padding: 3rem;
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<section>
+  <div class="hero">
+    <h1>Feliz aniversário, <span>Ruya</span></h1>
+    <p>
+      Algumas pessoas nascem.
+      Outras acontecem.
+      Você aconteceu na minha vida.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Você não é detalhe</h2>
+    <p>
+Ruya,
+
+Você não é parte do meu dia.
+Você é o motivo pelo qual o dia faz sentido.
+
+Tem gente que ocupa espaço.
+Você ocupa pensamento.
+Ocupa silêncio.
+Ocupa vontade de futuro.
+
+Seu jeito muda o ambiente.
+Seu nome muda meu humor.
+Seu sorriso muda tudo.
+
+Se eu tivesse que explicar você,
+eu falharia.
+Porque certas coisas não se explicam.
+Se sentem.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="box" style="text-align:center">
+    <h2>Toque aqui</h2>
+    <p>Cada clique é um sentimento diferente.</p>
+    <button onclick="mensagem()">Sentir</button>
+    <p id="msg" style="margin-top:2rem; font-style:italic;"></p>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Promessa real</h2>
+    <p>
+Eu não prometo perfeição.
+Prometo presença.
+
+Prometo te escolher nos dias fáceis
+e principalmente nos difíceis.
+
+Prometo aprender você todos os dias,
+mesmo quando achar que já sei.
+
+Prometo não ir embora quando o mundo pesar.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Final que não termina</h2>
+    <p>
+Se esse site acabar,
+se o tempo passar,
+se o mundo mudar,
+
+Ainda assim,
+eu escolheria você.
+
+Hoje.
+E de novo.
+E outra vez.
+    </p>
+  </div>
+</section>
+
+<footer>
+Feito para Ruya.
+Com verdade, carinho e sentimento.
+</footer>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>Obrigada por existir</h2>
+    <p>
+Se eu pudesse guardar você em um lugar,
+seria no ponto exato entre o coração e a calma.
+    </p>
+    <button onclick="closePopup()">Fechar</button>
+  </div>
+</div>
+
+<script>
+/* ESTRELAS */
+const stars = document.querySelector('.stars');
+for (let i = 0; i < 150; i++) {
+  const s = document.createElement('div');
+  s.style.top = Math.random()*100 + '%';
+  s.style.left = Math.random()*100 + '%';
+  s.style.animationDelay = Math.random()*3 + 's';
+  stars.appendChild(s);
+}
+
+/* CORAÇÕES */
+document.addEventListener('click', e => {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = '❤';
+  heart.style.left = e.clientX + 'px';
+  heart.style.top = e.clientY + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 3000);
+});
+
+/* MENSAGENS */
+const mensagens = [
+  "Você é onde meu coração descansa.",
+  "Seu nome mora em mim.",
+  "Te escolher é fácil.",
+  "Você é casa.",
+  "Meu dia melhora quando você existe nele."
+];
+
+function mensagem() {
+  document.getElementById('msg').innerText =
+    mensagens[Math.floor(Math.random() * mensagens.length)];
+}
+</script>
+
+</body>
+</html>
